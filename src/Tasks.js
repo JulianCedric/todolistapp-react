@@ -13,7 +13,7 @@ const Tasks = () => {
 
     const [ tasks, setTasks ] = useState(TASKS);
 
-    const newTask = () => {
+    const addTask = newTask => {
         console.log('here2');
 
         console.log('task:');
@@ -22,7 +22,7 @@ const Tasks = () => {
     return(
         <div>
             <p>Tasks [ Container ]</p>
-            <NewTask />
+            <NewTask addTask={addTask}/>
             <p>Tasks</p>
             <Task desc='Groceries' tasks={tasks}/>
         </div>

@@ -1,35 +1,44 @@
 import React, { useState } from 'react';
 import { Button, Form } from 'semantic-ui-react';
 
+const NewTask = (props) => {
+    const { addTask } = props;
 
-const NewTask = newTask => {
+    console.log('addTask:', addTask);
+    console.log('props:', props);
 
-    const [ desc, setDesc ] = useState('');
+    const [newDesc, setNewDesc] = useState('');
 
-    const handleChange = e => {
-        console.log('e.target.value:', e.target.value);
+    const handleChange = (value) => {
+        console.log('e.target.value:', value);
+        setNewDesc(value); 
     };
 
-    const handleSubmit = e => {
+    const handleSubmit = (e) => {
         e.preventDefault();
-        console.log('here');
+        console.log('Submitted task:', newDesc);
+        if (addTask) {
+            addTask(newDesc); 
+        }
+        setNewDesc(''); 
     };
 
     return (
         <>
             <p>New Task</p>
-            <Form onSubmit={(e) => handleSubmit(e.target.value)}>
+            <Form onSubmit={handleSubmit}>
                 <Form.Group>
                     <Form.Input
                         placeholder='New task'
-                        value={desc}
+                        name='newDesc'
+                        value={newDesc}
                         onChange={(e) => handleChange(e.target.value)}
                     />
                 </Form.Group>
-                <Button>Submit</Button>
+                <Button type="submit">Submit</Button>
             </Form>
         </>
     );
 };
 
-export default NewTask; 
+export default NewTask;
