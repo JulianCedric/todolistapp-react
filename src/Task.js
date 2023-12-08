@@ -5,6 +5,7 @@ const Task = props => {
     return (
         <>
             <p>{props.desc}</p>
+            <p>{props.tasks[0].desc}</p>
         </>
     );
 };

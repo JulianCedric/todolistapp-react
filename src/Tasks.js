@@ -2,16 +2,16 @@ import React, { useState } from 'react';
 import NewTask from './NewTask';
 import Task from './Task';
 
-// const TASKS = [
-//     {
-//         id: 0,
-//         desc: 'something'
-//     }
-// ];
+const TASKS = [
+    {
+        id: 1,
+        desc: 'Groceries'
+    }
+];
 
 const Tasks = () => {
 
-    const [ tasks, setTasks ] = useState('');
+    const [ tasks, setTasks ] = useState(TASKS);
 
     const newTask = () => {
         console.log('here2');
@@ -24,7 +24,7 @@ const Tasks = () => {
             <p>Tasks [ Container ]</p>
             <NewTask />
             <p>Tasks</p>
-            <Task desc='Groceries'/>
+            <Task desc='Groceries' tasks={tasks}/>
         </div>
     )
 };
