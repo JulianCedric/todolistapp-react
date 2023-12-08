@@ -1,10 +1,10 @@
 import React from 'react';
 
-const Task = () => {
-
+const Task = props => {
+    console.log('props:', props);
     return (
         <>
-            <p>Task</p>
+            <p>{props.desc}</p>
         </>
     );
 };
