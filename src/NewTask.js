@@ -34,10 +34,10 @@ const NewTask = props => {
                         name='newDesc'
                         value={newDesc}
                         onChange={e => handleChange(e.target.value)}
-                        width={12}
+                        width={16}
                     />
                 </Form.Group>
-                <Button type="submit">Submit</Button>
+                <Button type="submit" color='blue' fluid>Submit</Button>
             </Form>
         </>
     );

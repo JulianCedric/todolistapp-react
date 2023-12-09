@@ -20,16 +20,16 @@ const Tasks = () => {
             <Grid verticalAlign='middle' centered columns={3}>
                 <Grid.Row centered columns={3}>
 
-                    <Grid.Column>
+                    <Grid.Column width={6}>
                         <p style={{ backgroundColor: 'red' }}>here1</p>
                     </Grid.Column>
 
-                    <Grid.Column textAlign='center'>
+                    <Grid.Column textAlign='center' width={4}>
                         <h2>ToDo List App</h2>
                         <NewTask addTask={handleNewTask} tasks={tasks}/>
                     </Grid.Column>
 
-                    <Grid.Column>
+                    <Grid.Column width={6}>
                         <p style={{ backgroundColor: 'red' }}>here2</p>
                     </Grid.Column>
 
@@ -41,7 +41,7 @@ const Tasks = () => {
                     </Grid.Column>
                     <Grid.Column textAlign='center'>
                         <h3>Tasks</h3>
-                        <ol>{tasksList}</ol>
+                        <ul>{tasksList}</ul>
                     </Grid.Column>
                     <Grid.Column>
                         <p>here4</p>
