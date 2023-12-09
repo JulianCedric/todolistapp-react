@@ -21,7 +21,7 @@ const Tasks = () => {
                 <Grid.Row centered columns={3}>
 
                     <Grid.Column width={6}>
-                        <p style={{ backgroundColor: 'red' }}>here1</p>
+                        {/* <p style={{ backgroundColor: 'red' }}>here1</p> */}
                     </Grid.Column>
 
                     <Grid.Column textAlign='center' width={4}>
@@ -30,21 +30,23 @@ const Tasks = () => {
                     </Grid.Column>
 
                     <Grid.Column width={6}>
-                        <p style={{ backgroundColor: 'red' }}>here2</p>
+                        {/* <p style={{ backgroundColor: 'red' }}>here2</p> */}
                     </Grid.Column>
 
                 </Grid.Row>
 
                 <Grid.Row centered columns={3}>
                     <Grid.Column>
-                        <p>here3</p>
-                    </Grid.Column>
-                    <Grid.Column textAlign='center'>
-                        <h3>Tasks</h3>
-                        <ul>{tasksList}</ul>
+                        {/* <p>here3</p> */}
                     </Grid.Column>
                     <Grid.Column>
-                        <p>here4</p>
+                        <h3 style={{ textAlign: 'center' }}>Tasks</h3>
+                        <div>
+                            <ul style={{ listStyleType: 'none' }}>{tasksList}</ul>
+                        </div>
+                    </Grid.Column>
+                    <Grid.Column>
+                        {/* <p>here4</p> */}
                     </Grid.Column>
                 </Grid.Row>
             </Grid>
