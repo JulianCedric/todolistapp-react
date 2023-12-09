@@ -1,32 +1,55 @@
 import React, { useState } from 'react';
+import { Grid } from 'semantic-ui-react';
 import NewTask from './NewTask';
 import Task from './Task';
 
-const TASKS = [
-    {
-        id: 1,
-        desc: 'Groceries'
-    }
-];
+const TASKS = [];
 
 const Tasks = () => {
 
     const [ tasks, setTasks ] = useState(TASKS);
 
-    const addTask = newTask => {
-        console.log('here2');
+    const tasksList = tasks.map(task => <Task key={task.id} desc={task.desc}>{task.desc}</Task>);
 
-        console.log('task:');
+    const handleNewTask = newTask => {
+        setTasks(prevTasks => [...prevTasks, newTask]);
     };
 
     return(
-        <div>
-            <p>Tasks [ Container ]</p>
-            <NewTask addTask={addTask}/>
-            <p>Tasks</p>
-            <Task desc='Groceries' tasks={tasks}/>
-        </div>
-    )
+        <>
+            <Grid verticalAlign='middle' centered columns={3}>
+                <Grid.Row centered columns={3}>
+
+                    <Grid.Column>
+                        <p style={{ backgroundColor: 'red' }}>here1</p>
+                    </Grid.Column>
+
+                    <Grid.Column textAlign='center'>
+                        <h2>ToDo List App</h2>
+                        <NewTask addTask={handleNewTask} tasks={tasks}/>
+                    </Grid.Column>
+
+                    <Grid.Column>
+                        <p style={{ backgroundColor: 'red' }}>here2</p>
+                    </Grid.Column>
+
+                </Grid.Row>
+
+                <Grid.Row centered columns={3}>
+                    <Grid.Column>
+                        <p>here3</p>
+                    </Grid.Column>
+                    <Grid.Column textAlign='center'>
+                        <h3>Tasks</h3>
+                        <ol>{tasksList}</ol>
+                    </Grid.Column>
+                    <Grid.Column>
+                        <p>here4</p>
+                    </Grid.Column>
+                </Grid.Row>
+            </Grid>
+        </>
+    );
 };
 
 export default Tasks;
