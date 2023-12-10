@@ -27,7 +27,6 @@ const Tasks = props => {
 
                 <Grid.Row centered columns={3}>
                     <Grid.Column>
-                        {/* <p>here3</p> */}
                     </Grid.Column>
                     <Grid.Column>
                         <h3 style={{ textAlign: 'center' }}>Tasks</h3>
@@ -36,7 +35,6 @@ const Tasks = props => {
                         </div>
                     </Grid.Column>
                     <Grid.Column>
-                        {/* <p>here4</p> */}
                     </Grid.Column>
                 </Grid.Row>
             </Grid>
