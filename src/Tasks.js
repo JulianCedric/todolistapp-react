@@ -6,11 +6,12 @@ import Task from './Task';
 const Tasks = props => {
     console.log('./Tasks, props:', props);
 
-    const { tasks, addTask, deleteTask } = props;
+    const { tasks, addTask, editTask, deleteTask } = props;
     const tasksList = tasks.map(task => 
         <Task 
             key={task.id} 
             desc={task.desc} 
+            onEdit={editTask}
             onDelete={deleteTask}
             taskId={task.id}
         >
@@ -36,15 +37,15 @@ const Tasks = props => {
                 </Grid.Row>
 
                 <Grid.Row centered columns={3}>
-                    <Grid.Column>
+                    <Grid.Column width={6}>
                     </Grid.Column>
-                    <Grid.Column>
+                    <Grid.Column width={4}>
                         <h3 style={{ textAlign: 'center' }}>Tasks</h3>
                         <div>
-                            <ul style={{ listStyleType: 'none' }}>{tasksList}</ul>
+                            <ul style={{ listStyleType: 'none', backgroundColor: '#E0E1E2' }}>{tasksList}</ul>
                         </div>
                     </Grid.Column>
-                    <Grid.Column>
+                    <Grid.Column width={6}>
                     </Grid.Column>
                 </Grid.Row>
             </Grid>

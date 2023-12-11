@@ -12,8 +12,12 @@ const App = () => {
     setTasks(prevTasks => [...prevTasks, newTask]);
   };
 
-  const handleEditTask = () => {
-
+  const handleEditTask = (taskId, newDesc) => {
+    setTasks(prevTasks => prevTasks.map(task => {
+      if (task.id === taskId) {
+        return { ...task, desc: newDesc}
+;      }
+    }))
   };
 
   const handleDeleteTask = taskId => {
@@ -25,6 +29,7 @@ const App = () => {
       <Tasks 
         tasks={tasks} 
         addTask={handleAddTask}
+        editTask={handleEditTask}
         deleteTask={handleDeleteTask}
       />
     </div>

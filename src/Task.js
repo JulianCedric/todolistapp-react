@@ -13,7 +13,7 @@ const Task = props => {
 
     const handleEdit = () => {
         console.log('Edit Task:', props.desc);
-        props.onEdit(props.task);
+        props.onEdit(props.taskId);
     };
 
     const handleDelete = () => {
@@ -30,7 +30,14 @@ const Task = props => {
                 checked={checked}
             />
             <div>
-                <Button size="small" onClick={handleEdit}>Edit</Button>
+                <Button 
+                    size='small'
+                    border='none'
+                    backgroundColor='#f5f5f5'
+                    onClick={handleEdit}
+                >
+                    Edit
+                </Button>
                 <Button size="small" onClick={handleDelete}>Delete</Button>
             </div>
         </li>
