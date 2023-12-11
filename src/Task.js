@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Checkbox, Button } from 'semantic-ui-react';
+import { Button, Checkbox, Icon } from 'semantic-ui-react';
 
 const Task = props => {
     console.log('./Task.js, props:', props);
@@ -36,9 +36,16 @@ const Task = props => {
                     backgroundColor='#f5f5f5'
                     onClick={handleEdit}
                 >
-                    Edit
+                    <Icon name='edit outline'/>
                 </Button>
-                <Button size="small" onClick={handleDelete}>Delete</Button>
+                <Button 
+                    size='small' 
+                    border='none'
+                    backgroundColor='#f5f5f5'
+                    onClick={handleDelete}
+                >
+                    <Icon name='trash alternate outline'/>
+                </Button>
             </div>
         </li>
     );
