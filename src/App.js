@@ -8,11 +8,15 @@ const TASKS = [];
 const App = () => {
   const [ tasks, setTasks ] = useState(TASKS);
 
-  const handleNewTask = newTask => {
+  const handleAddTask = newTask => {
     setTasks(prevTasks => [...prevTasks, newTask]);
   };
 
-  const handleDelete = () => {
+  const handleEditTask = () => {
+
+  };
+
+  const handleDeleteTask = () => {
 
   };
 
@@ -20,8 +24,8 @@ const App = () => {
     <div className='App'>
       <Tasks 
         tasks={tasks} 
-        addTask={handleNewTask}
-        deleteTask={handleDelete}
+        addTask={handleAddTask}
+        deleteTask={handleDeleteTask}
       />
     </div>
   );

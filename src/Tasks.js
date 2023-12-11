@@ -4,7 +4,9 @@ import NewTask from './NewTask';
 import Task from './Task';
 
 const Tasks = props => {
-    console.log('props:', props);
+    console.log('./Tasks, props:', props);
+    console.log('./Tasks, props.addTask:', props.addTask);
+
     const { tasks, addTask, deleteTask } = props;
     const tasksList = tasks.map(task => <Task key={task.id} desc={task.desc} deleteTask={props.handleDelete}>{task.desc}</Task>);
 
