@@ -3,6 +3,8 @@ import { Checkbox, Button } from 'semantic-ui-react';
 
 const Task = props => {
     console.log('./Task.js, props:', props);
+    console.log('./Task.js, props.onDelete:', props.onDelete);
+
     const [ checked, setChecked ] = useState(false);
 
     const handleCheck = () => {
@@ -10,13 +12,14 @@ const Task = props => {
     };
 
     const handleEdit = () => {
-        console.log("Edit Task:", props.desc);
+        console.log('Edit Task:', props.desc);
         props.onEdit(props.task);
     };
 
     const handleDelete = () => {
-        console.log("Delete Task:", props.desc);
-        props.onDelete(props.tasks.id);
+        console.log('Delete Task:', props.desc);
+        console.log('props.key:', props.key);
+        props.onDelete(props.taskId);
     };
 
     return (

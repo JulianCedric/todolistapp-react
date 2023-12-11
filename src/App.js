@@ -16,8 +16,8 @@ const App = () => {
 
   };
 
-  const handleDeleteTask = () => {
-
+  const handleDeleteTask = taskId => {
+    setTasks(prevTasks => prevTasks.filter(task => task.id !== taskId));
   };
 
   return (
