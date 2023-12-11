@@ -12,9 +12,17 @@ const App = () => {
     setTasks(prevTasks => [...prevTasks, newTask]);
   };
 
+  const handleDelete = () => {
+
+  };
+
   return (
     <div className='App'>
-      <Tasks tasks={tasks} addTask={handleNewTask}/>
+      <Tasks 
+        tasks={tasks} 
+        addTask={handleNewTask}
+        deleteTask={handleDelete}
+      />
     </div>
   );
 };

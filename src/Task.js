@@ -2,16 +2,21 @@ import React, { useState } from 'react';
 import { Checkbox, Button } from 'semantic-ui-react';
 
 const Task = props => {
-    const [checked, setChecked] = useState(false);
+    console.log('./Task.js, props:', props);
+    const [ checked, setChecked ] = useState(false);
+
+    const handleCheck = () => {
+        console.log('Task checked');
+    };
 
     const handleEdit = () => {
         console.log("Edit Task:", props.desc);
-
+        props.onEdit(props.task);
     };
 
     const handleDelete = () => {
         console.log("Delete Task:", props.desc);
-
+        props.onDelete(props.tasks.id);
     };
 
     return (
