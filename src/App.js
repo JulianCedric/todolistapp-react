@@ -15,10 +15,11 @@ const App = () => {
   const handleEditTask = (taskId, newDesc) => {
     setTasks(prevTasks => prevTasks.map(task => {
       if (task.id === taskId) {
-        return { ...task, desc: newDesc}
-;      }
-    }))
-  };
+        return { ...task, desc: newDesc };
+      }
+      return task;
+    }));
+};
 
   const handleDeleteTask = taskId => {
     setTasks(prevTasks => prevTasks.filter(task => task.id !== taskId));
