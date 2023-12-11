@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Button, Form } from 'semantic-ui-react';
 
 const EditForm = ({ desc, taskId, onEdit, onCancel }) => {
   const [ newDesc, setNewDesc ] = useState(desc);
@@ -9,15 +10,18 @@ const EditForm = ({ desc, taskId, onEdit, onCancel }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input
-        type="text"
-        value={newDesc}
-        onChange={(e) => setNewDesc(e.target.value)}
-      />
-      <button type="submit">Save</button>
-      <button type="button" onClick={onCancel}>Cancel</button>
-    </form>
+    <Form onSubmit={handleSubmit}>
+      <Form.Field>
+        <Form.Input
+          type="text"
+          value={newDesc}
+          onChange={(e) => setNewDesc(e.target.value)}
+          autoFocus
+        />
+      </Form.Field>
+      <Button type="submit">Save</Button>
+      <Button type="button" onClick={onCancel}>Cancel</Button>
+    </Form>
   );
 };
 

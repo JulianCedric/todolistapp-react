@@ -30,7 +30,9 @@ const NewTask = props => {
             <Form onSubmit={handleSubmit}>
                 <Form.Group>
                     <Form.Input
+                        autoFocus
                         placeholder='New task'
+                        type='text'
                         name='newDesc'
                         value={newDesc}
                         onChange={e => handleChange(e.target.value)}
