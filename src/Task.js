@@ -1,66 +1,49 @@
 import React, { useState } from 'react';
-import { Button, Checkbox, Icon } from 'semantic-ui-react';
-import EditForm from './EditForm';
+import { Button, Checkbox } from 'semantic-ui-react';
 
-const Task = ({ desc, onDelete, onEdit, taskId }) => {
-    // console.log('./Task.js, props:', props);
-    // console.log('./Task.js, props.onDelete:', props.onDelete);
-
-    const [ checked, setChecked ] = useState(false);
-    const [ editMode, setEditMode ] = useState(false);
-
-    const handleCheck = () => {
-        console.log('Task checked');
-    };
-
+// Task component receiving its props
+const Task = ({ desc, onEdit, onDelete, taskId, onToggle }) => {
+    // State for managing checkbox and edit mode
+    const [checked, setChecked] = useState(false);
+    
+    // Function to toggle edit mode
     const toggleEditMode = () => {
-        setEditMode(!editMode);
+        console.log(taskId);
     };
+    
 
+    // Function to handle task deletion
     const handleDelete = () => {
         onDelete(taskId);
     };
 
+    // Rendering the task with options to edit or delete
     return (
-        <li style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-            {editMode ? (
-                <EditForm
-                    desc={desc}
-                    taskId={taskId}
-                    onEdit={(id, newDesc) => {
-                        onEdit(id, newDesc);
-                        setEditMode(false);
-                    }}
-                    onCancel={() => setEditMode(false)}
-                />
-           ) : (
-            <>
+        <>
+            <li style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                 <Checkbox
                     label={desc}
                     onChange={(e, data) => setChecked(data.checked)}
                     checked={checked}
                 />
                 <div>
-                <Button 
-                    size='small'
-                    border='none'
-                    backgroundColor='#f5f5f5'
-                    onClick={toggleEditMode}
-                >
-                    <Icon name='edit outline'/>
-                </Button>
-                <Button 
-                    size='small' 
-                    border='none'
-                    backgroundColor='#f5f5f5'
-                    onClick={handleDelete}
-                >
-                    <Icon name='trash alternate outline'/>
-                </Button>
+                    <Button icon='edit outline' size='small' onClick={toggleEditMode} />
+                    <Button icon='trash alternate outline' size='small' onClick={handleDelete} />
                 </div>
-            </>     
-            )}
-        </li>
+
+                {/* { editMode ? (
+                    <EditTask
+                        desc={desc}
+                        taskId={taskId}
+                        onEdit={onEdit}
+                        onCancel={() => setEditMode(false)}
+                    />
+                ) : (
+                    console.log('here')
+                )
+            }; */}
+            </li>
+        </>
     );
 };
 
