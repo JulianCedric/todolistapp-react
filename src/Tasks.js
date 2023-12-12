@@ -10,7 +10,7 @@ const Tasks = ({ tasks, addTask, editTask, onDelete, toggleEdit }) => {
             onEdit={editTask}
             onDelete={onDelete}
             taskId={task.id}
-            onToggle={toggleEdit}
+            toggleEdit={toggleEdit}
         />
     );
 

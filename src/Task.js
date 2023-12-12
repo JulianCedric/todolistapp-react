@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { Button, Checkbox } from 'semantic-ui-react';
 
-const Task = ({ desc, onEdit, onDelete, taskId, onToggle }) => {
+const Task = ({ desc, onEdit, onDelete, taskId, toggleEdit }) => {
     const [checked, setChecked] = useState(false);
     
-    const toggleEditMode = () => {
-        console.log(taskId);
+    const toggleEditCallback = () => {
+        console.log('toggleEditCallback, taskId:', taskId);
+        toggleEdit(taskId, desc);
     };
 
     const onDeleteCallback = () => {
@@ -21,7 +22,7 @@ const Task = ({ desc, onEdit, onDelete, taskId, onToggle }) => {
                     checked={checked}
                 />
                 <div>
-                    <Button icon='edit outline' size='small' onClick={toggleEditMode} />
+                    <Button icon='edit outline' size='small' onClick={toggleEditCallback} />
                     <Button icon='trash alternate outline' size='small' onClick={onDeleteCallback} />
                 </div>
             </li>

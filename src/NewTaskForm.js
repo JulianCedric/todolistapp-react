@@ -4,7 +4,7 @@ import { Button, Form } from 'semantic-ui-react';
 // NewTaskForm component receiving its props
 const NewTaskForm = ({ createTask, tasks }) => {
     // State hook for the new task description
-    const [newDesc, setNewDesc] = useState('');
+    const [ newDesc, setNewDesc ] = useState('');
 
     // Function to handle changes in the input field
     const handleChange = value => {

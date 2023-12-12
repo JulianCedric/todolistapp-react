@@ -2,12 +2,16 @@ import React, { useState } from 'react';
 import { Button, Form } from 'semantic-ui-react';
 
 // EditTask component receiving its props
-const EditTaskForm = ({ desc, taskId, onEdit, onCancel }) => {
+const EditTaskForm = ({ editTask, editDesc, desc, taskId, onEdit, onCancel }) => {
   // State hook for managing the new description
-  const [newDesc, setNewDesc] = useState(desc);
+  const [ newDesc, setNewDesc ] = useState(desc);
+
+  console.log('editTask:', editTask);
+  console.log('editDesc:', editDesc);
+  console.log('newDesc:', newDesc);
 
   // Function to handle form submission
-  const handleSubmit = e => {
+  const onEditCallback = () => {
     e.preventDefault();
     onEdit(taskId, newDesc);  // Triggering the onEdit function passed as a prop
   };
@@ -19,11 +23,11 @@ const EditTaskForm = ({ desc, taskId, onEdit, onCancel }) => {
         <Form.Input
           autoFocus
           type="text"
-          value={newDesc}
+          value={editDesc}
           onChange={(e) => setNewDesc(e.target.value)}
         />
       </Form.Group>
-      <Button type="submit">Save</Button>
+      <Button type="submit" onClick={onEditCallback}>Save & Submit</Button>
       <Button type="button" onClick={onCancel}>Cancel</Button>
     </Form>
   );

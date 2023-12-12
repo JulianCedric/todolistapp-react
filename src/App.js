@@ -11,12 +11,14 @@ const TASKS = [];
 const App = () => {
   const [ tasks, setTasks ] = useState(TASKS);
   const [ renderEditTaskForm, setRenderEditTaskForm ] = useState(false);
+  const [ editTask, setEditTask ] = useState(null);
+  const [ editDesc, setEditDesc ] = useState('');
 
   const handleNewTask = newTask => {
     setTasks(prevTasks => [...prevTasks, newTask]);
   };
 
-  const handleEditTask = (taskId, newDesc) => {
+  const handleEdit = (taskId, newDesc) => {
     setTasks(prevTasks => prevTasks.map(task => {
       if (task.id === taskId) {
         return { ...task, desc: newDesc };
@@ -30,8 +32,18 @@ const App = () => {
     console.log('Task ', taskId, ' deleted.');
   };
 
-  const toggleEditTaskForm = () => {
+  const toggleEditTaskForm = (taskId, desc) => {
     console.log('user clicked edit btn');
+    
+    setRenderEditTaskForm(true);
+    
+    const currTask = tasks.filter(task => task.id === taskId);
+    console.log('currTask:', currTask);
+    setEditTask(currTask);
+
+    const currDesc = desc;
+    console.log('currDesc:', currDesc); 
+    setEditDesc(currDesc);
   };
 
   return (
@@ -51,14 +63,14 @@ const App = () => {
           <Tasks 
             tasks={tasks} 
             createTask={handleNewTask}
-            editTask={handleEditTask}
+            editTask={handleEdit}
             onDelete={handleDelete}
             toggleEdit={toggleEditTaskForm}
           />
           </Grid.Column>
           <Grid.Column width={6} />
         </Grid.Row>
-        { renderEditTaskForm && tasks[0] ? <EditTaskForm /> : <p>here</p> }
+        { renderEditTaskForm && tasks[0] ? <EditTaskForm editTask={editTask} editDesc={editDesc} onEdit={handleEdit}/> : <p>here</p> }
       </Grid>
     </div>
   );
