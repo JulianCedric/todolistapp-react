@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import Task from './Task';
 
-const Tasks = ({ tasks, addTask, editTask, deleteTask, toggleEdit }) => {
+const Tasks = ({ tasks, addTask, editTask, onDelete, toggleEdit }) => {
     const [ editMode, setEditMode ] = useState(false);    
     const tasksList = tasks.map(task => 
         <Task 
             key={task.id} 
             desc={task.desc} 
             onEdit={editTask}
-            onDelete={deleteTask}
+            onDelete={onDelete}
             taskId={task.id}
             onToggle={toggleEdit}
         />
@@ -26,25 +26,3 @@ const Tasks = ({ tasks, addTask, editTask, deleteTask, toggleEdit }) => {
 };
 
 export default Tasks;
-
-// </Grid.Column>
-// <Grid.Column width={6} />
-// </Grid.Row>
-// </Grid>
-// <Grid verticalAlign='middle' centered columns={3}>
-// <Grid.Row centered columns={3}>
-// <Grid.Column width={6} />
-// <Grid.Column textAlign='center' width={4}>
-//     {/* { editMode && ( 
-//         <EditTask
-//             desc={desc}
-//             taskId={taskId}
-//             onEdit={onEdit}
-//             onCancel={() => setEditMode(false)}
-//         />
-//     )}; */}
-// </Grid.Column>
-// <Grid.Column width={6} />
-// </Grid.Row>
-// </Grid>
-// </>

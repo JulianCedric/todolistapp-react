@@ -25,8 +25,9 @@ const App = () => {
     }));
   };
 
-  const handleDeleteTask = taskId => {
+  const handleDelete = taskId => {
     setTasks(prevTasks => prevTasks.filter(task => task.id !== taskId));
+    console.log('Task ', taskId, ' deleted.');
   };
 
   const toggleEditTaskForm = () => {
@@ -51,7 +52,7 @@ const App = () => {
             tasks={tasks} 
             createTask={handleNewTask}
             editTask={handleEditTask}
-            deleteTask={handleDeleteTask}
+            onDelete={handleDelete}
             toggleEdit={toggleEditTaskForm}
           />
           </Grid.Column>
