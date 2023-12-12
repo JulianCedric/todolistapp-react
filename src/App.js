@@ -12,20 +12,37 @@ const App = () => {
   const [ tasks, setTasks ] = useState(TASKS);
   const [ renderEditTaskForm, setRenderEditTaskForm ] = useState(false);
   const [ editTask, setEditTask ] = useState(null);
+  const [ editTaskId, setEditTaskId ] = useState(0);
   const [ editDesc, setEditDesc ] = useState('');
+
+  console.log('tasks:', tasks);
 
   const handleNewTask = newTask => {
     setTasks(prevTasks => [...prevTasks, newTask]);
   };
 
   const handleEdit = (taskId, newDesc) => {
+    console.log('user submitted edited task');
+    console.log('taskId:', taskId);
+    console.log('newDesc:', newDesc);
+
     setTasks(prevTasks => prevTasks.map(task => {
       if (task.id === taskId) {
         return { ...task, desc: newDesc };
       }
       return task;
     }));
+
+    setRenderEditTaskForm(prevState => {
+      return !prevState;
+    });
   };
+
+  const handleCancelEdit = () => {
+    setRenderEditTaskForm(prevState => {
+      return !prevState;
+    });
+  }; 
 
   const handleDelete = taskId => {
     setTasks(prevTasks => prevTasks.filter(task => task.id !== taskId));
@@ -40,6 +57,8 @@ const App = () => {
     const currTask = tasks.filter(task => task.id === taskId);
     console.log('currTask:', currTask);
     setEditTask(currTask);
+
+    setEditTaskId(taskId);
 
     const currDesc = desc;
     console.log('currDesc:', currDesc); 
@@ -60,6 +79,7 @@ const App = () => {
         <Grid.Row centered columns={3}>
           <Grid.Column width={6} />
           <Grid.Column width={4}>
+          { !renderEditTaskForm && tasks.length > 0 ? <hr /> : <p> </p>}
           <Tasks 
             tasks={tasks} 
             createTask={handleNewTask}
@@ -70,7 +90,13 @@ const App = () => {
           </Grid.Column>
           <Grid.Column width={6} />
         </Grid.Row>
-        { renderEditTaskForm && tasks[0] ? <EditTaskForm editTask={editTask} editDesc={editDesc} onEdit={handleEdit}/> : <p>here</p> }
+        <Grid.Row centered columns={3}>
+          <Grid.Column width={6} />
+          <Grid.Column width={4}>
+            { renderEditTaskForm && tasks.length > 0 ? <EditTaskForm editTask={editTask} editTaskId={editTaskId} editDesc={editDesc} onEdit={handleEdit} onCancel={handleCancelEdit}/> : <p> </p> }
+          </Grid.Column>
+          <Grid.Column width={6}/>
+        </Grid.Row>
       </Grid>
     </div>
   );

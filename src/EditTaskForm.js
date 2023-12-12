@@ -1,34 +1,42 @@
 import React, { useState } from 'react';
 import { Button, Form } from 'semantic-ui-react';
 
-// EditTask component receiving its props
-const EditTaskForm = ({ editTask, editDesc, desc, taskId, onEdit, onCancel }) => {
-  // State hook for managing the new description
-  const [ newDesc, setNewDesc ] = useState(desc);
+const EditTaskForm = ({ editTask, editDesc, editTaskId, onEdit, onCancel }) => {
+  const [newDesc, setNewDesc] = useState(editDesc);
 
   console.log('editTask:', editTask);
   console.log('editDesc:', editDesc);
   console.log('newDesc:', newDesc);
 
-  // Function to handle form submission
-  const onEditCallback = () => {
-    e.preventDefault();
-    onEdit(taskId, newDesc);  // Triggering the onEdit function passed as a prop
+  const handleChange = e => {
+    setNewDesc(e.target.value);
+    console.log('newDesc:', newDesc);
   };
 
-  // Rendering the form with save and cancel options
+  const onEditCallback = e => {
+    e.preventDefault();
+    onEdit(editTaskId, newDesc); 
+  };
+
+  const onCancelCallback = () => {
+    onCancel();
+  };
+
   return (
-    <Form onSubmit={handleSubmit}>
+    <Form onSubmit={onEditCallback}>
       <Form.Group>
         <Form.Input
           autoFocus
           type="text"
-          value={editDesc}
-          onChange={(e) => setNewDesc(e.target.value)}
+          value={newDesc}
+          onChange={handleChange}
+          width={16}
         />
       </Form.Group>
-      <Button type="submit" onClick={onEditCallback}>Save & Submit</Button>
-      <Button type="button" onClick={onCancel}>Cancel</Button>
+      <Button.Group widths='2'>
+        <Button type="submit">Save & Submit</Button>
+        <Button className='hover-text-orange' type="button" onClick={onCancelCallback} floated='right'>Cancel</Button>
+      </Button.Group>
     </Form>
   );
 };

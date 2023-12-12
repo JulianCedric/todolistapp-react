@@ -22,8 +22,8 @@ const Task = ({ desc, onEdit, onDelete, taskId, toggleEdit }) => {
                     checked={checked}
                 />
                 <div>
-                    <Button icon='edit outline' size='small' onClick={toggleEditCallback} />
-                    <Button icon='trash alternate outline' size='small' onClick={onDeleteCallback} />
+                    <Button className='hover-orange' icon='edit outline' size='small' onClick={toggleEditCallback} />
+                    <Button className='hover-orange' icon='trash alternate outline' size='small' onClick={onDeleteCallback} />
                 </div>
             </li>
         </>

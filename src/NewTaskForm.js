@@ -1,30 +1,25 @@
 import React, { useState } from 'react';
 import { Button, Form } from 'semantic-ui-react';
 
-// NewTaskForm component receiving its props
 const NewTaskForm = ({ createTask, tasks }) => {
-    // State hook for the new task description
     const [ newDesc, setNewDesc ] = useState('');
 
-    // Function to handle changes in the input field
     const handleChange = value => {
         setNewDesc(value); 
     };
 
-    // Function to handle form submission
     const handleSubmit = e => {
         e.preventDefault();
-        if (newDesc.trim()) {  // Check if newDesc is not just white space
+        if (newDesc.trim()) { 
             const newTask = {
-                id: tasks.length + 1,  // Generating a new ID
+                id: tasks.length + 1,  
                 desc: newDesc
             }
-            createTask(newTask);  // Triggering the createTask function passed as a prop
-            setNewDesc('');  // Resetting the input field
+            createTask(newTask);  
+            setNewDesc(''); 
         }
     };
 
-    // Rendering the form for adding a new task
     return (
         <Form onSubmit={handleSubmit}>
             <Form.Group>
