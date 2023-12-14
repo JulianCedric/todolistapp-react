@@ -81,7 +81,6 @@ const App = () => {
       }));
   
       setRenderEditTaskForm(prevState => {
-        console.log('App.js, setRenderEditTaskForm(): prevState:', prevState);
         return !prevState;
       });
     } catch (error) {
