@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import 'semantic-ui-css/semantic.min.css';
 import { Grid } from 'semantic-ui-react';
 import './App.css';
@@ -16,6 +16,23 @@ const App = () => {
   const [ editDesc, setEditDesc ] = useState('');
 
   console.log('tasks:', tasks);
+
+  const fetchTasks = async () => {
+    try {
+      const response = await fetch('http://localhost:3000/tasks'); // Replace with your Rails API URL
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      const tasksData = await response.json();
+      setTasks(tasksData);
+    } catch (error) {
+      console.error('Fetch error:', error);
+    }
+  };
+
+  useEffect(() => {
+    fetchTasks();
+  }, []);
 
   const handleNewTask = newTask => {
     setTasks(prevTasks => [...prevTasks, newTask]);
