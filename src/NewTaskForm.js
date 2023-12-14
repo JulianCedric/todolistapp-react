@@ -1,22 +1,35 @@
 import React, { useState } from 'react';
 import { Button, Form } from 'semantic-ui-react';
 
-const NewTaskForm = ({ createTask, tasks }) => {
-    const [ newDesc, setNewDesc ] = useState('');
+const NewTaskForm = ({ createTask }) => {
+    const [newDesc, setNewDesc] = useState('');
 
-    const handleChange = value => {
-        setNewDesc(value); 
+    const handleChange = (e) => {
+        setNewDesc(e.target.value); 
     };
 
-    const handleSubmit = e => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         if (newDesc.trim()) { 
             const newTask = {
-                id: tasks.length + 1,  
-                desc: newDesc
+                description: newDesc,
+                completed: false
+            };
+            try {
+                const response = await fetch('http://localhost:3001/tasks', {
+                    method: 'POST',
+                    body: JSON.stringify(newTask),
+                    headers: { 'Content-Type': 'application/json' }
+                });
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                const addedTask = await response.json();
+                createTask(addedTask);  
+                setNewDesc('');
+            } catch (error) {
+                console.error('Error:', error);
             }
-            createTask(newTask);  
-            setNewDesc(''); 
         }
     };
 
@@ -28,7 +41,7 @@ const NewTaskForm = ({ createTask, tasks }) => {
                     placeholder='New task'
                     type='text'
                     value={newDesc}
-                    onChange={e => handleChange(e.target.value)}
+                    onChange={handleChange}
                     width={16}
                 />
             </Form.Group>
