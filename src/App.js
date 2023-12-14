@@ -15,9 +15,6 @@ const App = () => {
   const [ editTaskId, setEditTaskId ] = useState(0);
   const [ editDesc, setEditDesc ] = useState('');
 
-  console.log('tasks:', tasks);
-  console.log('In App.js, renderEditTaskForm:', renderEditTaskForm);
-
   const fetchTasks = async () => {
     try {
       const response = await fetch('http://localhost:3001/tasks'); // Replace with your Rails API URL
@@ -52,11 +49,15 @@ const App = () => {
     }
   };
 
-  const handleEdit = async (taskId, newDesc) => {
-    console.log('user submitted edited task');
-    console.log('taskId:', taskId);
-    console.log('newDesc:', newDesc);
-  
+  const handleEdit = async (newTaskData) => {
+    // console.log('handleEdit function, taskId:', taskId);
+    // console.log('handleEdit function, newDesc:', newDesc);
+    console.log('handleEdit function, newTaskData:', newTaskData);
+    console.log('handleEdit function, newTaskData.id:', newTaskData.id);
+    
+    const taskId = newTaskData.id;
+    const newDesc = newTaskData.desc;
+    
     const updatedTask = {
         description: newDesc,
         completed: false
@@ -80,6 +81,7 @@ const App = () => {
       }));
   
       setRenderEditTaskForm(prevState => {
+        console.log('App.js, setRenderEditTaskForm(): prevState:', prevState);
         return !prevState;
       });
     } catch (error) {
@@ -107,21 +109,17 @@ const App = () => {
     }
 };
 
-  const toggleEditTaskForm = (taskId, desc) => {
-    console.log('user clicked edit btn');
-    
+  const toggleEditTaskForm = (taskId, desc) => {    
     setRenderEditTaskForm(prevState => {
       return !prevState;
     });
     
     const currTask = tasks.filter(task => task.id === taskId);
-    console.log('currTask:', currTask);
     setEditTask(currTask);
 
     setEditTaskId(taskId);
 
     const currDesc = desc;
-    console.log('currDesc:', currDesc); 
     setEditDesc(currDesc);
   };
 

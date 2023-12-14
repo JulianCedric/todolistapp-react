@@ -2,13 +2,9 @@ import React, { useState } from 'react';
 import { Button, Checkbox } from 'semantic-ui-react';
 
 const Task = ({ desc, onEdit, onDelete, taskId, toggleEdit }) => {
-
-    console.log('In Task.js, desc:', desc);
-
     const [checked, setChecked] = useState(false);
     
     const toggleEditCallback = () => {
-        console.log('toggleEditCallback, taskId:', taskId);
         toggleEdit(taskId, desc);
     };
 

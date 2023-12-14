@@ -4,13 +4,8 @@ import { Button, Form } from 'semantic-ui-react';
 const EditTaskForm = ({ editTask, editDesc, editTaskId, onEdit, onCancel }) => {
   const [newDesc, setNewDesc] = useState(editDesc);
 
-  console.log('editTask:', editTask);
-  console.log('editDesc:', editDesc);
-  console.log('newDesc1:', newDesc);
-
   const handleChange = e => {
     setNewDesc(e.target.value);
-    console.log('newDesc2:', newDesc);
   };
 
   const onEditCallback = async (e) => {
@@ -30,16 +25,12 @@ const EditTaskForm = ({ editTask, editDesc, editTaskId, onEdit, onCancel }) => {
         throw new Error('Network response was not ok');
       }
       const taskData = await response.json();
+      console.log('onEditCallback function, taskData:', taskData);
       onEdit(taskData);
     } catch (error) {
       console.error('Error:', error);
     }
   };
-
-  // const onEditCallback = e => {
-  //   e.preventDefault();
-  //   onEdit(editTaskId, newDesc); 
-  // };
 
   const onCancelCallback = () => {
     onCancel();

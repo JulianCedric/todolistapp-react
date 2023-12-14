@@ -2,9 +2,6 @@ import React, { useState } from 'react';
 import Task from './Task';
 
 const Tasks = ({ tasks, addTask, editTask, onDelete, toggleEdit }) => {
-
-    console.log('In Tasks.js, tasks:', tasks);
-
     const [ editMode, setEditMode ] = useState(false);    
     const tasksList = tasks.map(task => 
         <Task 
