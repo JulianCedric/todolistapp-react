@@ -13,10 +13,32 @@ const EditTaskForm = ({ editTask, editDesc, editTaskId, onEdit, onCancel }) => {
     console.log('newDesc:', newDesc);
   };
 
-  const onEditCallback = e => {
+  const onEditCallback = async (e) => {
     e.preventDefault();
-    onEdit(editTaskId, newDesc); 
+    const updatedTask = {
+      description: newDesc,
+      completed: false
+    };
+    try {
+      const response = await fetch(`http://localhost:3001/tasks/${editTaskId}`, {
+        method: 'PUT',
+        body: JSON.stringify(updatedTask),
+        headers: { 'Content-Type': 'application/json' }
+      });
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      const taskData = await response.json();
+      onEdit(taskData);
+    } catch (error) {
+      console.error('Error:', error);
+    }
   };
+
+  // const onEditCallback = e => {
+  //   e.preventDefault();
+  //   onEdit(editTaskId, newDesc); 
+  // };
 
   const onCancelCallback = () => {
     onCancel();

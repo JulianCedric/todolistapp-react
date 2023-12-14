@@ -38,21 +38,37 @@ const App = () => {
     setTasks(prevTasks => [...prevTasks, newTask]);
   };
 
-  const handleEdit = (taskId, newDesc) => {
+  const handleEdit = async (taskId, newDesc) => {
     console.log('user submitted edited task');
     console.log('taskId:', taskId);
     console.log('newDesc:', newDesc);
-
-    setTasks(prevTasks => prevTasks.map(task => {
-      if (task.id === taskId) {
-        return { ...task, desc: newDesc };
+  
+    const updatedTask = {
+        description: newDesc,
+        completed: false
+    };
+  
+    try {
+      const response = await fetch(`http://localhost:3001/tasks/${taskId}`, {
+        method: 'PUT',
+        body: JSON.stringify(updatedTask),
+        headers: { 'Content-Type': 'application/json' }
+      });
+  
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
       }
-      return task;
-    }));
-
-    setRenderEditTaskForm(prevState => {
-      return !prevState;
-    });
+  
+      const taskData = await response.json();
+  
+      setTasks(prevTasks => prevTasks.map(task => {
+        return task.id === taskId ? taskData : task;
+      }));
+  
+      setRenderEditTaskForm(false);
+    } catch (error) {
+      console.error('Error:', error);
+    }
   };
 
   const handleCancelEdit = () => {
@@ -61,10 +77,19 @@ const App = () => {
     });
   }; 
 
-  const handleDelete = taskId => {
-    setTasks(prevTasks => prevTasks.filter(task => task.id !== taskId));
-    console.log('Task ', taskId, ' deleted.');
-  };
+  const handleDelete = async (taskId) => {
+    try {
+        const response = await fetch(`http://localhost:3001/tasks/${taskId}`, {
+            method: 'DELETE'
+        });
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        setTasks(prevTasks => prevTasks.filter(task => task.id !== taskId));
+    } catch (error) {
+        console.error('Error:', error);
+    }
+};
 
   const toggleEditTaskForm = (taskId, desc) => {
     console.log('user clicked edit btn');
