@@ -50,8 +50,6 @@ const App = () => {
   };
 
   const handleEdit = async (newTaskData) => {
-    // console.log('handleEdit function, taskId:', taskId);
-    // console.log('handleEdit function, newDesc:', newDesc);
     console.log('handleEdit function, newTaskData:', newTaskData);
     console.log('handleEdit function, newTaskData.id:', newTaskData.id);
     
