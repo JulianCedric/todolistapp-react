@@ -16,6 +16,7 @@ const App = () => {
   const [ editDesc, setEditDesc ] = useState('');
 
   console.log('tasks:', tasks);
+  console.log('In App.js, renderEditTaskForm:', renderEditTaskForm);
 
   const fetchTasks = async () => {
     try {
@@ -34,8 +35,21 @@ const App = () => {
     fetchTasks();
   }, []);
 
-  const handleNewTask = newTask => {
-    setTasks(prevTasks => [...prevTasks, newTask]);
+  const handleNewTask = async (newTaskData) => {
+    try {
+      const response = await fetch('http://localhost:3001/tasks', {
+        method: 'POST',
+        body: JSON.stringify(newTaskData),
+        headers: { 'Content-Type': 'application/json' }
+      });
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      const addedTask = await response.json();
+      setTasks(prevTasks => [...prevTasks, addedTask]); 
+    } catch (error) {
+      console.error('Error:', error);
+    }
   };
 
   const handleEdit = async (taskId, newDesc) => {
@@ -65,7 +79,9 @@ const App = () => {
         return task.id === taskId ? taskData : task;
       }));
   
-      setRenderEditTaskForm(false);
+      setRenderEditTaskForm(prevState => {
+        return !prevState;
+      });
     } catch (error) {
       console.error('Error:', error);
     }
@@ -94,7 +110,9 @@ const App = () => {
   const toggleEditTaskForm = (taskId, desc) => {
     console.log('user clicked edit btn');
     
-    setRenderEditTaskForm(true);
+    setRenderEditTaskForm(prevState => {
+      return !prevState;
+    });
     
     const currTask = tasks.filter(task => task.id === taskId);
     console.log('currTask:', currTask);

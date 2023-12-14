@@ -6,11 +6,11 @@ const EditTaskForm = ({ editTask, editDesc, editTaskId, onEdit, onCancel }) => {
 
   console.log('editTask:', editTask);
   console.log('editDesc:', editDesc);
-  console.log('newDesc:', newDesc);
+  console.log('newDesc1:', newDesc);
 
   const handleChange = e => {
     setNewDesc(e.target.value);
-    console.log('newDesc:', newDesc);
+    console.log('newDesc2:', newDesc);
   };
 
   const onEditCallback = async (e) => {
@@ -19,6 +19,7 @@ const EditTaskForm = ({ editTask, editDesc, editTaskId, onEdit, onCancel }) => {
       description: newDesc,
       completed: false
     };
+
     try {
       const response = await fetch(`http://localhost:3001/tasks/${editTaskId}`, {
         method: 'PUT',
