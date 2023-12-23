@@ -8,10 +8,6 @@ const Task = ({ desc, onEdit, onDelete, taskId, toggleEdit }) => {
         toggleEdit(taskId, desc);
     };
 
-    // const onDeleteCallback = () => {
-    //     onDelete(taskId);
-    // };
-
     return (
         <>
             <li style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>

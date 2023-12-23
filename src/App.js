@@ -17,7 +17,7 @@ const App = () => {
 
   const fetchTasks = async () => {
     try {
-      const response = await fetch('http://localhost:3001/tasks'); // Replace with your Rails API URL
+      const response = await fetch('http://localhost:3001/tasks');
       if (!response.ok) {
         throw new Error('Network response was not ok');
       }
@@ -50,8 +50,6 @@ const App = () => {
   };
 
   const handleEdit = async (newTaskData) => {
-    // console.log('handleEdit function, newTaskData:', newTaskData);
-    // console.log('handleEdit function, newTaskData.id:', newTaskData.id);
     
     const taskId = newTaskData.id;
     const newDesc = newTaskData.desc;
