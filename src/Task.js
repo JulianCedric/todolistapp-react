@@ -23,7 +23,7 @@ const Task = ({ desc, onEdit, onDelete, taskId, toggleEdit }) => {
                 <div>
                     <Button className='hover-orange' icon='edit outline' size='small' onClick={toggleEditCallback} />
                     {/* <Button className='hover-orange' icon='trash alternate outline' size='small' onClick={onDeleteCallback} /> */}
-                    <Button className='hover-orange' icon='trash alternate outline' size='small' onClick={() => onEdit(taskId)} />
+                    <Button className='hover-orange' icon='trash alternate outline' size='small' onClick={() => onDelete(taskId)} />
                 </div>
             </li>
         </>

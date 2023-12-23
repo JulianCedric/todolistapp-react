@@ -50,8 +50,8 @@ const App = () => {
   };
 
   const handleEdit = async (newTaskData) => {
-    console.log('handleEdit function, newTaskData:', newTaskData);
-    console.log('handleEdit function, newTaskData.id:', newTaskData.id);
+    // console.log('handleEdit function, newTaskData:', newTaskData);
+    // console.log('handleEdit function, newTaskData.id:', newTaskData.id);
     
     const taskId = newTaskData.id;
     const newDesc = newTaskData.desc;
@@ -60,6 +60,11 @@ const App = () => {
         description: newDesc,
         completed: false
     };
+
+    console.log('newTaskData:', newTaskData);
+
+
+    console.log('taskId:', taskId);
   
     try {
       const response = await fetch(`http://localhost:3001/tasks/${taskId}`, {

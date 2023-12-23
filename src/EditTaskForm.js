@@ -25,7 +25,7 @@ const EditTaskForm = ({ editTask, editDesc, editTaskId, onEdit, onCancel }) => {
         throw new Error('Network response was not ok');
       }
       const taskData = await response.json();
-      console.log('onEditCallback function, taskData:', taskData);
+      // console.log('onEditCallback function, taskData:', taskData);
       onEdit(taskData);
     } catch (error) {
       console.error('Error:', error);
