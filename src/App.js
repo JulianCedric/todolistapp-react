@@ -16,6 +16,7 @@ const App = () => {
   const [ editTaskId, setEditTaskId ] = useState(0);
   const [ editDesc, setEditDesc ] = useState('');
 
+  // function called during first render in Effect Hook (below)
   const fetchTasks = async () => {
     try {
       const response = await fetch('http://localhost:3001/tasks');
