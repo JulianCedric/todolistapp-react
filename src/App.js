@@ -5,6 +5,7 @@ import './App.css';
 import Tasks from './Tasks';
 import NewTaskForm from './NewTaskForm';
 import EditTaskForm from './EditTaskForm';
+import ZenQuote from './ZenQuote';
 
 const TASKS = [];
 
@@ -28,9 +29,10 @@ const App = () => {
     }
   };
 
+  // empty array to fetch tasks only once
   useEffect(() => {
     fetchTasks();
-  }, []);
+  }, []); 
 
   const handleNewTask = async (newTaskData) => {
     try {
@@ -129,6 +131,11 @@ const App = () => {
         <Grid.Row centered columns={3}>
           <Grid.Column width={6} />
           <Grid.Column textAlign='center' width={4}>
+              
+              
+              <ZenQuote />
+
+
               <h2>Tasks</h2>
               <NewTaskForm createTask={handleNewTask} tasks={tasks}/>
           </Grid.Column>
